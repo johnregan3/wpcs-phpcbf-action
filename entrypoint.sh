@@ -22,13 +22,19 @@ else
     EXCLUDES="node_modules,vendor,${INPUT_EXCLUDES}"
 fi
 
-echo -e "\e[1;32mStart PHPCS\e[0m"
+echo -e "\e[1;32mPHPCS Start\e[0m"
+
 phpcs -i
+
 phpcs . --colors --standard="${STANDARD}" --ignore="${EXCLUDES}" --extensions=php
-echo "PHPCS Complete"
+
+echo -e "\e[1;32mSPHPCS Complete\e[0m"
+
+echo -e "\e[1;32mSPHPCBF Start\e[0m"
 
 phpcbf . -p -v --standard="${STANDARD}" --ignore="${EXCLUDES}" --extensions=php
-echo "PHPCBF Complete"
+
+echo -e "\e[1;32mSPHPCBF Complete\e[0m"
 
 
 status=$?
