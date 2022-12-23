@@ -7,7 +7,7 @@ else
     EXCLUDES="node_modules,vendor,${INPUT_EXCLUDES}"
 fi
 
-php /usr/bin/php-cs-fixer list --raw --standard="${INPUT_STANDARD}"
+php /usr/bin/php-cs-fixer list --raw
 
 
 status=$?
