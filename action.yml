@@ -10,10 +10,6 @@ inputs:
     description: 'Run PHPCBF with the prescribed standard'
     requred: false
     default: ''
-  paths:
-    description: 'Path(s) to check (space separated)'
-    required: false
-    default: '.'
   excludes:
     description: 'Path(s) to excludes (space separated)'
     required: false
@@ -30,10 +26,10 @@ inputs:
     description: 'Repository branch'
     required: false
     default: 'master'
-  phpcs_bin_path:
-    description: 'PHPCS bin path'
+  phpcbf_bin_path:
+    description: 'PHPCBF bin path'
     required: false
-    default: 'phpcs'
+    default: 'phpcbf'
   use_local_config:
     description: 'Use local config if available'
     required: false
