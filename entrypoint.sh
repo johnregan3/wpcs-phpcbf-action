@@ -31,6 +31,10 @@ else
     EXCLUDES="node_modules,vendor,${INPUT_EXCLUDES}"
 fi
 
+if [ "${INPUT_ENABLE_PHPCBF}" ]; then
+	sh -c "/usr/local/bin/phpcbf $* -p -vvv -extensions=php --standard=${INPUT_STANDARD} --ignore=${EXCLUDES}"
+fi
+
 phpcs -i
 
 echo "::add-matcher::${RUNNER_TEMP}/_github_workflow/problem-matcher.json"
@@ -46,7 +50,7 @@ fi
 # .phpcs.xml, phpcs.xml, .phpcs.xml.dist, phpcs.xml.dist
 if [ -f ".phpcs.xml" ] || [ -f "phpcs.xml" ] || [ -f ".phpcs.xml.dist" ] || [ -f "phpcs.xml.dist" ]; then
     HAS_CONFIG=true
-else 
+else
     HAS_CONFIG=false
 fi
 
