@@ -24,10 +24,10 @@ fi
 
 echo -e "\e[1;32mStart PHPCS\e[0m"
 phpcs -i
-phpcs . --colors --standard="${STANDARD}" --ignore="${EXCLUDES}" --extensions=module/php
+phpcs . --colors --standard="${STANDARD}" --ignore="${EXCLUDES}" --extensions=php
 echo "PHPCS Complete"
 
-phpcbf . -p -v --standard="${STANDARD}" --ignore="${EXCLUDES}" --extensions=module/php
+phpcbf . -p -v --standard="${STANDARD}" --ignore="${EXCLUDES}" --extensions=php
 echo "PHPCBF Complete"
 
 
