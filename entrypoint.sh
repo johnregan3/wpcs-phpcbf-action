@@ -28,13 +28,17 @@ phpcs -i
 
 phpcs . --colors --standard="${STANDARD}" --ignore="${EXCLUDES}" --extensions=php
 
-echo -e "\e[1;32mSPHPCS Complete\e[0m"
+echo -e "\e[1;32mPHPCS Complete\e[0m"
 
-echo -e "\e[1;32mSPHPCBF Start\e[0m"
+echo -e "\e[1;32mPHPCBF Start\e[0m"
 
 phpcbf . -p -v --standard="${STANDARD}" --ignore="${EXCLUDES}" --extensions=php
 
-echo -e "\e[1;32mSPHPCBF Complete\e[0m"
+echo -e "\e[1;32mPHPCBF Complete\e[0m"
+
+echo -e "\e[1;32mPHPCS Recheck\e[0m"
+phpcs . --colors --standard="${STANDARD}" --ignore="${EXCLUDES}" --extensions=php
+echo -e "\e[1;32mPHPCS Recheck Complete\e[0m"
 
 
 status=$?
