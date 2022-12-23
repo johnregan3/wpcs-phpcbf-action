@@ -5,6 +5,12 @@ git clone https://github.com/Automattic/VIP-Coding-Standards ${HOME}/vipcs
 git clone https://github.com/sirbrillig/phpcs-variable-analysis ${HOME}/variable-analysis
 /usr/local/bin/phpcs --config-set installed_paths "${HOME}/wpcs,${HOME}/vipcs,${HOME}/variable-analysis"
 
+if [ -z "${INPUT_STANDARD}" ]; then
+    STANDARD="WordPress"
+else
+    STANDARD="WordPress,${INPUT_STANDARD}"
+fi
+
 if [ -z "${INPUT_EXCLUDES}" ]; then
     EXCLUDES="node_modules,vendor"
 else
@@ -12,7 +18,7 @@ else
 fi
 
 phpcbf -i
-# php /usr/bin/php-cs-fixer . --ignore="${EXCLUDES}" -vvv --extensions=module/php
+phpcbf . --standard="${STANDARD}" --ignore="${EXCLUDES}" -vvv --extensions=module/php
 echo "PHPCBF Complete"
 
 
