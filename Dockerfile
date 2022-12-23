@@ -1,7 +1,7 @@
 FROM php:7.4-alpine
 
 RUN wget https://github.com/squizlabs/PHP_CodeSniffer/releases/download/3.5.6/phpcs.phar -O phpcs \
-    && chmod a+x phpcbf \
+    && chmod a+x phpcs \
     && mv phpcs /usr/local/bin/phpcs
 
 RUN wget https://github.com/squizlabs/PHP_CodeSniffer/releases/download/3.7.1/phpcbf.phar -O phpcbf \
