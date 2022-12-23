@@ -32,7 +32,9 @@ else
 fi
 
 if [ "${INPUT_ENABLE_PHPCBF}" ]; then
-	sh -c "/usr/local/bin/phpcbf $* -p -vvv -extensions=php --standard=${INPUT_STANDARD} --ignore=${EXCLUDES}"
+    echo "Running PHPCBF"
+    phpcbf -p -vvv -extensions=php --standard="${INPUT_STANDARD}" --ignore="${EXCLUDES}"
+	echo "PHPCBF complete"
 fi
 
 phpcs -i
