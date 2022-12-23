@@ -7,7 +7,7 @@ else
     EXCLUDES="node_modules,vendor,${INPUT_EXCLUDES}"
 fi
 
-php /usr/bin/php-cs-fixer -i
+phpcbf -i
 # php /usr/bin/php-cs-fixer . --ignore="${EXCLUDES}" -vvv --extensions=module/php
 echo "PHPCBF Complete"
 
