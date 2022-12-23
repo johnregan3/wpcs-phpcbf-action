@@ -33,7 +33,7 @@ fi
 
 if [ "${INPUT_ENABLE_PHPCBF}" ]; then
     echo "Running PHPCBF"
-    phpcbf -p -vvv -extensions=php --standard="${INPUT_STANDARD}" --ignore="${EXCLUDES}"
+    phpcbf . -p -vvv -extensions=php --standard="${INPUT_STANDARD}" --ignore="${EXCLUDES}"
 	echo "PHPCBF complete"
 fi
 
