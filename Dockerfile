@@ -10,7 +10,7 @@ RUN wget https://github.com/squizlabs/PHP_CodeSniffer/releases/download/3.7.1/ph
 
 COPY entrypoint.sh /entrypoint.sh
 
-RUN chmod +x /action/entrypoint.sh
+RUN chmod +x /entrypoint.sh
 
 RUN apk update && \
     apk upgrade && \
