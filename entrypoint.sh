@@ -18,7 +18,7 @@ else
 fi
 
 phpcbf -i
-phpcbf . -p --standard="${STANDARD}" --ignore="${EXCLUDES}" -v -vv --extensions=module/php
+phpcbf . -p --standard="${STANDARD}" --ignore="${EXCLUDES}" -v --extensions=module/php
 echo "PHPCBF Complete"
 
 
