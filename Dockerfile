@@ -1,12 +1,11 @@
-FROM cytopia/php-cs-fixer:3-php7.4
+FROM php:7.4-alpine
 
-COPY entrypoint.sh \
-     /action/
+RUN wget https://github.com/squizlabs/PHP_CodeSniffer/releases/download/3.5.6/phpcbf.phar -O phpcbf \
+    && chmod a+x phpcbf \
+    && mv phpcbf /usr/local/bin/phpcbf
 
-RUN chmod +x /action/entrypoint.sh
+ADD entrypoint.sh /entrypoint.sh
 
-RUN apk update && \
-    apk upgrade && \
-    apk add git
+RUN chmod +x /entrypoint.sh
 
-ENTRYPOINT ["/action/entrypoint.sh"]
+ENTRYPOINT ["/entrypoint.sh"]
