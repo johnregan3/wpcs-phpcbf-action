@@ -3,7 +3,7 @@ git clone -b master https://github.com/WordPress/WordPress-Coding-Standards.git 
 
 git clone https://github.com/Automattic/VIP-Coding-Standards ${HOME}/vipcs
 git clone https://github.com/sirbrillig/phpcs-variable-analysis ${HOME}/variable-analysis
-${INPUT_PHPCS_BIN_PATH} --config-set installed_paths "${HOME}/wpcs,${HOME}/vipcs,${HOME}/variable-analysis"
+/usr/local/bin/phpcs --config-set installed_paths "${HOME}/wpcs,${HOME}/vipcs,${HOME}/variable-analysis"
 
 if [ -z "${INPUT_EXCLUDES}" ]; then
     EXCLUDES="node_modules,vendor"
