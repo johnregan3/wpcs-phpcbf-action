@@ -1,7 +1,6 @@
-FROM cytopia/phpcs:3-php7.4
+FROM cytopia/php-cs-fixer:3-php7.4
 
 COPY entrypoint.sh \
-     problem-matcher.json \
      /action/
 
 RUN chmod +x /action/entrypoint.sh

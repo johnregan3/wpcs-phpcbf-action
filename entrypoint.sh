@@ -1,7 +1,4 @@
 #!/bin/sh
-
-cp /action/problem-matcher.json /github/workflow/problem-matcher.json
-
 git clone -b master https://github.com/WordPress/WordPress-Coding-Standards.git ~/wpcs
 
 if [ "${INPUT_STANDARD}" = "WordPress-VIP-Go" ] || [ "${INPUT_STANDARD}" = "WordPressVIPMinimum" ]; then
@@ -9,14 +6,6 @@ if [ "${INPUT_STANDARD}" = "WordPress-VIP-Go" ] || [ "${INPUT_STANDARD}" = "Word
     git clone https://github.com/Automattic/VIP-Coding-Standards ${HOME}/vipcs
     git clone https://github.com/sirbrillig/phpcs-variable-analysis ${HOME}/variable-analysis
     ${INPUT_PHPCS_BIN_PATH} --config-set installed_paths "${HOME}/wpcs,${HOME}/vipcs,${HOME}/variable-analysis"
-elif [ "${INPUT_STANDARD}" = "10up-Default" ]; then
-    echo "Setting up 10up-Default"
-    git clone https://github.com/10up/phpcs-composer ${HOME}/10up
-    git clone https://github.com/PHPCompatibility/PHPCompatibilityWP ${HOME}/phpcompatwp
-    git clone https://github.com/PHPCompatibility/PHPCompatibility ${HOME}/phpcompat
-    git clone https://github.com/PHPCompatibility/PHPCompatibilityParagonie ${HOME}/phpcompat-paragonie
-    git clone https://github.com/PHPCSStandards/PHPCSUtils ${HOME}/phpcsutils
-    ${INPUT_PHPCS_BIN_PATH} --config-set installed_paths "${HOME}/wpcs,${HOME}/10up/10up-Default,${HOME}/phpcompatwp/PHPCompatibilityWP,${HOME}/phpcompat/PHPCompatibility,${HOME}/phpcompat-paragonie/PHPCompatibilityParagonieSodiumCompat,${HOME}/phpcompat-paragonie/PHPCompatibilityParagonieRandomCompat,${HOME}/phpcsutils/PHPCSUtils"
 elif [ -z "${INPUT_STANDARD_REPO}" ] || [ "${INPUT_STANDARD_REPO}" = "false" ]; then
     ${INPUT_PHPCS_BIN_PATH} --config-set installed_paths ~/wpcs
 else
@@ -31,15 +20,7 @@ else
     EXCLUDES="node_modules,vendor,${INPUT_EXCLUDES}"
 fi
 
-if [ "${INPUT_ENABLE_PHPCBF}" ]; then
-    echo "Running PHPCBF"
-    phpcbf . -p -vvv -extensions=php --standard="${INPUT_STANDARD}" --ignore="${EXCLUDES}"
-	echo "PHPCBF complete"
-fi
-
-phpcs -i
-
-echo "::add-matcher::${RUNNER_TEMP}/_github_workflow/problem-matcher.json"
+php /usr/bin/php-cs-fixer list --raw --standard="${INPUT_STANDARD}"
 
 if [ -z "${INPUT_ENABLE_WARNINGS}" ] || [ "${INPUT_ENABLE_WARNINGS}" = "false" ]; then
     WARNING_FLAG="-n"
@@ -63,7 +44,5 @@ else
 fi
 
 status=$?
-
-echo "::remove-matcher owner=phpcs::"
 
 exit $status
