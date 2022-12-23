@@ -6,6 +6,10 @@ inputs:
     description: 'Enable checking for warnings (-w)'
     required: false
     default: ''
+  enable_phpcbf:
+    description: 'Run PHPCBF with the prescribed standard'
+    requred: false
+    default: ''
   paths:
     description: 'Path(s) to check (space separated)'
     required: false
