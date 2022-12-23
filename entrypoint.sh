@@ -1,4 +1,9 @@
 #!/bin/sh
+
+
+/usr/local/bin/phpcs --config-set colors 1
+
+
 git clone -b master https://github.com/WordPress/WordPress-Coding-Standards.git ~/wpcs
 
 git clone https://github.com/Automattic/VIP-Coding-Standards ${HOME}/vipcs
@@ -8,7 +13,7 @@ git clone https://github.com/sirbrillig/phpcs-variable-analysis ${HOME}/variable
 if [ -z "${INPUT_STANDARD}" ]; then
     STANDARD="WordPress"
 else
-    STANDARD="WordPress,${INPUT_STANDARD}"
+    STANDARD="${INPUT_STANDARD}"
 fi
 
 if [ -z "${INPUT_EXCLUDES}" ]; then
@@ -17,8 +22,11 @@ else
     EXCLUDES="node_modules,vendor,${INPUT_EXCLUDES}"
 fi
 
-phpcbf -i
-phpcbf . -p --standard="${STANDARD}" --ignore="${EXCLUDES}" -v --extensions=module/php
+phpcs -i
+phpcs . -extensions=module/php --colors --standard="${STANDARD}" --ignore="${EXCLUDES}" --extensions=module/php
+echo "PHPCS Complete"
+
+phpcbf . -p -v --standard="${STANDARD}" --ignore="${EXCLUDES}" --extensions=module/php
 echo "PHPCBF Complete"
 
 
